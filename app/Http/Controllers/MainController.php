@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\Setting;
-use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Request;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 
 class MainController extends Controller
@@ -16,33 +16,47 @@ class MainController extends Controller
     }
 
     public function post(LaravelFacebookSdk $fb) {
-        $conent = Request::input('content');
-    }
 
-    public function test(LaravelFacebookSdk $fb) {
-
-        $fbToken = Setting::get('facebook_token');
+        $pageToken = Setting::get('page_token');
         $pageId = Setting::get('page_id');
 
-        $fb->setDefaultAccessToken($fbToken);
+        $fb->setDefaultAccessToken($pageToken);
 
+        if($pageToken == '' || $fb->getDefaultAccessToken()->isExpired()) {
 
-        $pages = $fb->get('/me/accounts')->getBody();
-        $pages = json_decode($pages, true)['data'];
+            $fbToken = Setting::get('facebook_token');
+            $fb->setDefaultAccessToken($fbToken);
 
-        $page_token = '';
+            $pages = $fb->get('/me/accounts')->getBody();
+            $pages = json_decode($pages, true)['data'];
 
-        foreach($pages as $page) {
-            if($pageId == $page['id'])
-                $page_token = $page['access_token'];
+            foreach($pages as $page) {
+                if($pageId == $page['id'])
+                    $pageToken = $page['access_token'];
+            }
+            $fb->setDefaultAccessToken($pageToken);
         }
 
-        $fb->setDefaultAccessToken($page_token);
+        $content = Request::input('content');
+        $post = Post::addPost($content);
+
+        $hashTag = Setting::get('hash_tag');
+
+        $content = '#'.$hashTag.'_'.$post->id."\n\n".$content;
 
         $res = $fb->post('/'.$pageId.'/feed', [
-           'message' => 'test'
+            'message' => $content
         ]);
 
-        dd($res);
+        $decodeBody = $res->getDecodedBody();
+
+        Post::updatePostId($post->id, $decodeBody['id']);
+
+
+        return view('redirect', [
+            'url' => 'http://fb.com/'.$decodeBody['id'],
+            'seconds' => 5,
+        ]);
+
     }
 }

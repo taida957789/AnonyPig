@@ -29,10 +29,6 @@
                     <li><textarea name="facebook_token">{{ $fbToken }}</textarea></li>
                 </ul>
                 <ul>
-                    <li>流水號</li>
-                    <li><input name="auto_inc" type="text" value="{{ $autoInc }}"/></li>
-                </ul>
-                <ul>
                     <li>Hash Tag</li>
                     <li><input name="hash_tag" type="text" value="{{ $hashTag }}"/></li>
                 </ul>

@@ -8,6 +8,8 @@
     margin: 0 auto; }
     .app .center-container h1 {
       text-align: center; }
+    .app .center-container h2 {
+      text-align: center; }
     .app .center-container ul.row {
       list-style: none;
       padding-left: 0; }

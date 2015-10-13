@@ -13,7 +13,7 @@ class Settings extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->string('name')->index();
+            $table->string('name')->index()->unique();
             $table->string('value');
         });
     }

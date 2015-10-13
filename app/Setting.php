@@ -20,24 +20,16 @@ class Setting extends Model
      */
     protected $fillable = ['name', 'value'];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = ['password', 'remember_token'];
-
     public $timestamps = false;
 
 
     public static function get($name, $default = '') {
         $row = self::where('name', $name)->get()->first();
-
         return $row == null ? $default : $row->value;
     }
 
     public static function set($name, $value) {
-        if( self::get($name, null) == null) {
+        if( self::where('name', $name)->count() == 0 ) {
             self::create([
                 'name' => $name,
                 'value' => $value
