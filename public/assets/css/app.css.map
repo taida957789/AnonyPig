@@ -1,0 +1,1 @@
+{"version":3,"sources":["settings.scss"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,UAAU;EACV,WAAW,EAHP;EAKJ;IACE,YAAY;IACZ,iBAAiB,EAFA","file":"app.css","sourcesContent":[".app {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n\n  .center-container {\n    width: 100%;\n    max-width: 300px;\n  }\n}"],"sourceRoot":"/source/"}
