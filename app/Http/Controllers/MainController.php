@@ -12,7 +12,11 @@ class MainController extends Controller
 {
 
     public function index() {
+        return view('post');
+    }
 
+    public function post(LaravelFacebookSdk $fb) {
+        $conent = Request::input('content');
     }
 
     public function test(LaravelFacebookSdk $fb) {

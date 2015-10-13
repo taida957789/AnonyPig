@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 
 class SettingsController extends Controller
@@ -19,23 +20,40 @@ class SettingsController extends Controller
 
         $pageId = Setting::get('page_id');
         $fbToken = Setting::get('facebook_token');
+        $autoInc = Setting::get('auto_inc', '0');
+        if($autoInc == '0')
+            Setting::set('auto_inc', '1');
+        $autoInc = Setting::get('auto_inc', '0');
+        $hashTag = Setting::get('hash_tag');
 
         return view('settings', [
             'pageId' => $pageId,
-            'fbToken' => $fbToken
+            'fbToken' => $fbToken,
+            'autoInc' => $autoInc,
+            'hashTag' => $hashTag
         ]);
     }
 
     public function save(Request $request) {
-        $pageId = $request->input('page_id');
-        $fbToken = $request->input('facebook_token');
-        Setting::set('page_id', $pageId);
-        Setting::set('facebook_token', $fbToken);
-        return view('settings', [
-            'message' => '儲存成功',
-            'pageId' => $pageId,
-            'fbToken' => $fbToken
-        ]);
+
+        if(Session::get('login') === true) {
+            $pageId = $request->input('page_id');
+            $fbToken = $request->input('facebook_token');
+            $autoInc = $request->input('auto_inc');
+            $hashTag = $request->input('hash_tag');
+
+            Setting::set('page_id', $pageId);
+            Setting::set('facebook_token', $fbToken);
+            return view('settings', [
+                'message' => '儲存成功',
+                'pageId' => $pageId,
+                'fbToken' => $fbToken,
+                'autoInc' => $autoInc,
+                'hashTag' => $hashTag
+            ]);
+        } else {
+            return redirect('/settings/facebook/login');
+        }
     }
 
     public function login(LaravelFacebookSdk $fb) {
@@ -52,7 +70,7 @@ class SettingsController extends Controller
                 ->getRedirectLoginHelper()
                 ->getAccessToken();
         } catch (FacebookSDKException $e) {
-            dd($e->getMessage());
+            return redirect('/');
         }
 
         if (! $token) {
@@ -62,13 +80,13 @@ class SettingsController extends Controller
             if (! $helper->getError()) {
                 abort(403, 'Unauthorized action.');
             }
-
-            dd(
+            return redirect('/');
+            /*dd(
                 $helper->getError(),
                 $helper->getErrorCode(),
                 $helper->getErrorReason(),
                 $helper->getErrorDescription()
-            );
+            );*/
         }
 
         if (! $token->isLongLived()) {
@@ -78,10 +96,10 @@ class SettingsController extends Controller
             try {
                 $token = $oauth_client->getLongLivedAccessToken($token);
             } catch (FacebookSDKException $e) {
-                dd($e->getMessage());
+                return redirect('/');
             }
         }
-
+        Session::put('login', true);
         Setting::set('facebook_token', $token->getValue());
         $fb->setDefaultAccessToken($token);
 

@@ -18,4 +18,6 @@ Route::post('/settings', 'SettingsController@save');
 Route::get('/settings', 'SettingsController@index');
 Route::get('/settings/facebook/login', 'SettingsController@login');
 Route::get('/settings/facebook/callback', 'SettingsController@callback');
+Route::post('/', 'MainController@post');
 Route::get('/', 'MainController@index');
+

@@ -29,6 +29,14 @@
                     <li><textarea name="facebook_token">{{ $fbToken }}</textarea></li>
                 </ul>
                 <ul>
+                    <li>流水號</li>
+                    <li><input name="auto_inc" type="text" value="{{ $autoInc }}"/></li>
+                </ul>
+                <ul>
+                    <li>Hash Tag</li>
+                    <li><input name="hash_tag" type="text" value="{{ $hashTag }}"/></li>
+                </ul>
+                <ul>
                     <li>
                         <a id="submit" type="submit" class="button hvr-sweep-to-right" onclick="javascript:appform.submit();">儲存網站設定</a>
                     </li>

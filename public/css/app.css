@@ -8,10 +8,10 @@
     margin: 0 auto; }
     .app .center-container h1 {
       text-align: center; }
-    .app .center-container ul.row {
+    .app .center-container > ul {
       list-style: none;
       padding-left: 0; }
-      .app .center-container ul.row li {
+      .app .center-container > ul li {
         margin: 5px 0 5px 0; }
     .app .center-container input {
       width: 100%;
@@ -37,10 +37,15 @@
       cursor: pointer;
       text-align: center; }
     .app .center-container #submit {
-      background-color: #a20f4a;
+      background-color: #5E7564;
       color: #FFFFFF; }
       .app .center-container #submit.hvr-sweep-to-right:before {
-        background-color: rgba(199, 10, 86, 0.91); }
+        background-color: #3E734C; }
+    .app .center-container #fblogin {
+      background-color: #7795AB;
+      color: #FFFFFF; }
+      .app .center-container #fblogin.hvr-sweep-to-right:before {
+        background-color: #226596; }
     .app .center-container textarea {
       width: 100%;
       min-height: 150px;
