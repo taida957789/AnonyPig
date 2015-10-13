@@ -21,8 +21,10 @@ class SettingsController extends Controller
         $pageId = Setting::get('page_id');
         $fbToken = Setting::get('facebook_token');
         $autoInc = Setting::get('auto_inc', '0');
+
         if($autoInc == '0')
             Setting::set('auto_inc', '1');
+
         $autoInc = Setting::get('auto_inc', '0');
         $hashTag = Setting::get('hash_tag');
 
@@ -34,7 +36,8 @@ class SettingsController extends Controller
         ]);
     }
 
-    public function save(Request $request) {
+    public function save(Request $request)
+    {
 
         if(Session::get('login') === true) {
             $pageId = $request->input('page_id');
@@ -51,19 +54,21 @@ class SettingsController extends Controller
                 'autoInc' => $autoInc,
                 'hashTag' => $hashTag
             ]);
+
         } else {
             return redirect('/settings/facebook/login');
         }
     }
 
-    public function login(LaravelFacebookSdk $fb) {
-
+    public function login(LaravelFacebookSdk $fb)
+    {
         $login_url = $fb->getLoginUrl(['email', 'publish_pages', 'manage_pages']);
 
         return redirect($login_url);
     }
 
-    public function callback(LaravelFacebookSdk $fb) {
+    public function callback(LaravelFacebookSdk $fb)
+    {
         $token = null;
         try {
             $token = $fb
@@ -99,6 +104,7 @@ class SettingsController extends Controller
                 return redirect('/');
             }
         }
+
         Session::put('login', true);
         Setting::set('facebook_token', $token->getValue());
         $fb->setDefaultAccessToken($token);

@@ -22,7 +22,7 @@
       resize: none;
       outline: none;
       font-size: 18px; }
-    .app .center-container .button {
+    .app .center-container a.button {
       text-decoration: none;
       width: 100%;
       margin: 0;
@@ -35,7 +35,8 @@
       height: 40px;
       border: none;
       cursor: pointer;
-      text-align: center; }
+      text-align: center;
+      line-height: 26px; }
     .app .center-container #submit {
       background-color: #5E7564;
       color: #FFFFFF; }

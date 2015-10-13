@@ -22,17 +22,18 @@
                     <textarea name="content" id="content" ></textarea>
                 </li>
             </ul>
-            <ul class="row">
+            <ul class="rules row">
                 <li>告白須知</li>
                 <li>
                     <ul>
                         <li>請勿做任何人身攻擊</li>
+                        <li>請勿發佈任何具有性騷擾、猥褻、令人不舒服的字眼</li>
                     </ul>
                 </li>
             </ul>
             <ul class="row">
                 <li>
-                    <a id="submit" type="submit" class="button hvr-sweep-to-right" onclick="javascript:appform.submit();">儲存網站設定</a>
+                    <a id="submit" type="submit" class="button hvr-sweep-to-right" onclick="javascript:appform.submit();">我要告白</a>
                 </li>
             </ul>
         </form>

@@ -22,7 +22,7 @@
       resize: none;
       outline: none;
       font-size: 18px; }
-    .app .center-container .button {
+    .app .center-container a.button {
       text-decoration: none;
       width: 100%;
       margin: 0;
@@ -35,7 +35,8 @@
       height: 40px;
       border: none;
       cursor: pointer;
-      text-align: center; }
+      text-align: center;
+      line-height: 26px; }
     .app .center-container #submit {
       background-color: #a20f4a;
       color: #FFFFFF; }
@@ -53,5 +54,7 @@
     .app .center-container .message-box .message {
       padding: 10px 16px;
       background-color: #AFD4A9; }
+    .app .center-container .rules {
+      margin-bottom: 25px; }
 
 /*# sourceMappingURL=app.css.map */
