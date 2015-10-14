@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\PublishPost;
 use App\Post;
 use App\Setting;
 use App\Http\Controllers\Controller;
@@ -60,26 +61,30 @@ class MainController extends Controller
         $post = Post::addPost($content);
 
         // format the publish content ( hashtag .. or some information )
-        $hashTag = Setting::get('hash_tag');
+        //$hashTag = Setting::get('hash_tag');
 
-        $content = '#'.$hashTag.'_'.$post->id."\n\n".$content;
+        //$content = '#'.$hashTag.'_'.$post->id."\n\n".$content;
 
         // publish it
         // ##### We will use async task in the future #####
-        $res = $fb->post('/'.$pageId.'/feed', [
-            'message' => $content
-        ]);
+        //$res = $fb->post('/'.$pageId.'/feed', [
+        //    'message' => $content
+        //]);
 
-        $decodeBody = $res->getDecodedBody();
+        //$decodeBody = $res->getDecodedBody();
 
         // update the post_id in database
-        Post::updatePostId($post->id, $decodeBody['id']);
+        //Post::updatePostId($post->id, $decodeBody['id']);
 
+        $job = (new PublishPost($post, $pageToken))->delay(3);
 
-        return view('redirect', [
+        $r = $this->dispatch($job);
+
+        dd($r);
+        /*return view('redirect', [
             'url' => 'http://fb.com/'.$decodeBody['id'],
             'seconds' => 5,
-        ]);
+        ]);*/
 
     }
 }
