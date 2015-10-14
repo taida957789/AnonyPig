@@ -22,7 +22,7 @@
                         <ul class="message-box">
                             @foreach ($errors->all() as $error)
                                 <li class="message-error">
-                                    {{ $error }}
+                                    ⋆ {{ $error }}
                                 </li>
                             @endforeach
                         </ul>

@@ -30,7 +30,7 @@
     (function countdown() {
         document.getElementById('seconds').innerText = s;
         s--;
-        if(s > 0)
+        if(s >= 0)
             setTimeout(countdown, 1000);
     })();
 

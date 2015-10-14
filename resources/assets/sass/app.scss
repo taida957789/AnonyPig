@@ -92,12 +92,33 @@
       padding-left: 0;
       margin-bottom: 15px;
       .message-info {
-        padding: 10px 16px;
+        padding: 5px 8px;
         background-color: #AFD4A9;
+        margin: 0;
+
+        &:first-of-type {
+          padding-top: 8px;
+        }
+        &:last-of-type {
+          padding-bottom: 8px;
+        }
       }
       .message-error {
-        padding: 10px 16px;
+        padding: 5px 8px;
         background-color: rgba(255, 140, 140, 0.93);
+        color: #B74040;
+        line-height: 19px;
+        margin: 0;
+
+        &:first-of-type {
+          padding-top: 8px;
+        }
+        &:last-of-type {
+          padding-bottom: 8px;
+        }
+      }
+      .message-error-text {
+        color: #B74040;
       }
     }
 

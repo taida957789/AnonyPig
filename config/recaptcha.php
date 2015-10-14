@@ -48,7 +48,7 @@ return [
     'options'     => [
 
         'curl_timeout' => 1,
-
+        'lang' => 'zh-TW',
     ],
 
     /*
