@@ -146,7 +146,7 @@ return [
 
 
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
-
+        Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
     ],
 
     /*
@@ -196,6 +196,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
+        'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
     ],
 
 ];

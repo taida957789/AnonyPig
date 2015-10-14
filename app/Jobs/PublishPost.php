@@ -35,13 +35,11 @@ class PublishPost extends Job implements SelfHandling, ShouldQueue
     /**
      * Execute the job.
      *
-     * @return void
+     * @param LaravelFacebookSdk $fb
      */
     public function handle(LaravelFacebookSdk $fb)
     {
 
-
-        File::append(app_path('test.txt'), $this->job);
         //$fb = App::make('SammyK\LaravelFacebookSdk\LaravelFacebookSdk');
         $fb->setDefaultAccessToken($this->token);
 

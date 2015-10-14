@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>{{ Config::get('app.title') }}</title>
     <link href="assets/css/app.css" rel="stylesheet" type="text/css">
 </head>
@@ -15,20 +16,43 @@
         <h2>預計將在 <span id="seconds"> {{ $seconds  }}</span> 後發布文章</h2>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
-    var redirect_url = '{{ $url }}';
+    var postToken = '{{ $postToken }}';
     var s = parseInt('{{ $seconds }}');
-    function countDown() {
+
+    (function countdown() {
         document.getElementById('seconds').innerText = s;
         s--;
         if(s > 0)
-            setTimeout(countDown, 1000);
-        else
-            location.href = redirect_url;
-    }
+            setTimeout(countdown, 1000);
+    })();
 
-    countDown();
+    (function check() {
+        $.ajax({
+            url : '/ping',
+            method : "POST",
+            dataType : 'json',
+            data : {
+                postToken : postToken
+            },
+            success: function(data) {
+
+                if (data.facebook_id == null) {
+                    setTimeout(check, Math.max(s/4, 1000));
+                } else {
+                    location.href = 'http://fb.com/' + data.facebook_id;
+                }
+            }
+        });
+    })();
+
 </script>
 </body>
 </html>

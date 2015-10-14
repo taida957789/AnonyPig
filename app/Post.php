@@ -19,35 +19,27 @@ class Post extends Model
      *
      * @var array
      */
-    protected $fillable = ['content', 'token', 'post_id'];
+    protected $fillable = ['content', 'job_id', 'post_id'];
 
     public $timestamps = true;
 
 
-    private static function generateToken($id)
+    public static function addPost($conent)
     {
-        $token = str_random(count($id));
-
-        while(self::where('token', $token)->get()->first() != null)
-            $token = str_random(count($id));
-
-        return $token;
-    }
-
-    public static function addPost($conent) {
-
         $post = new Post();
         $post->content = $conent;
-        $post->token = '';
-        $post->post_id = 0;
+        $post->generateToken();
         $post->save();
-        $post->token = self::generateToken($post->id);
-        $post->save();
-
         return $post;
     }
 
-    public static function updatePostId($id, $post_id) {
+    public static function getPostByToken($token)
+    {
+        return self::where('token', $token)->get()->first();
+    }
+
+    public static function updatePostId($id, $post_id)
+    {
         $post = self::where('id', $id)->get()->first();
         if( $post != null) {
             $post->post_id = $post_id;
@@ -55,5 +47,23 @@ class Post extends Model
         } else {
             return false;
         }
+    }
+
+    public static function updateJobId($id, $job_id) {
+        $post = self::where('id', $id)->get()->first();
+        if( $post != null) {
+            $post->job_id = $job_id;
+            return $post->save();
+        } else {
+            return false;
+        }
+    }
+
+    public function generateToken()
+    {
+        $token = str_random(max([count("$this->id"),4]));
+        while( self::where('token', $token)->count() != 0)
+            $token = str_random(max(count($this->id, 4)));
+        $this->token = $token;
     }
 }

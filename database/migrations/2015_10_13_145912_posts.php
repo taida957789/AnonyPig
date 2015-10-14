@@ -15,8 +15,9 @@ class Posts extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id')->index();
             $table->string('content');
-            $table->string('job_id')->default('');
-            $table->string('post_id')->default('');
+            $table->string('token')->default('')->index();
+            $table->string('job_id')->default('')->index();
+            $table->string('post_id')->default('')->index();
             $table->timestamps();
         });
     }

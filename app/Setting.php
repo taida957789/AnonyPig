@@ -23,12 +23,14 @@ class Setting extends Model
     public $timestamps = false;
 
 
-    public static function get($name, $default = '') {
+    public static function get($name, $default = '')
+    {
         $row = self::where('name', $name)->get()->first();
         return $row == null ? $default : $row->value;
     }
 
-    public static function set($name, $value) {
+    public static function set($name, $value)
+    {
         if( self::where('name', $name)->count() == 0 ) {
             self::create([
                 'name' => $name,
