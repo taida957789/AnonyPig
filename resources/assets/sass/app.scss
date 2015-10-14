@@ -20,6 +20,7 @@
       list-style: none;
       padding-left: 0;
       margin: 4px 0;
+
       li {
         margin: 12px 0 5px 0;
       }
@@ -58,6 +59,16 @@
       }
     }
 
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      margin: 0;
+      padding: 5px 7px;
+      box-sizing: border-box;
+      resize: none;
+      outline: none;
+      font-size: 18px;
+    }
 
     .button {
       text-decoration: none;
@@ -76,17 +87,6 @@
       line-height: 26px;
     }
 
-    textarea {
-      width: 100%;
-      min-height: 150px;
-      margin: 0;
-      padding: 5px 7px;
-      box-sizing: border-box;
-      resize: none;
-      outline: none;
-      font-size: 18px;
-    }
-
     .message-box {
       list-style: none;
       padding-left: 0;
@@ -99,10 +99,6 @@
         padding: 10px 16px;
         background-color: rgba(255, 140, 140, 0.93);
       }
-    }
-
-    .rules {
-      margin-bottom: 25px;
     }
 
     .recaptcha {
