@@ -13,7 +13,7 @@
     <div class="center-container">
         <h1>新告白元智 YZU Crushes</h1>
 
-        <h2>預計將在 <span id="seconds"> {{ $seconds  }}</span> 後發布文章</h2>
+        <h2>預計將在 <span id="seconds"> {{ $seconds  }}</span> 秒後發布文章</h2>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>

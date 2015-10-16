@@ -28,6 +28,9 @@ return [
 
     'url' => 'https://yzucrushes.ga',
 
+
+    'title' => '新告白元智 YZU Crushes',
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
