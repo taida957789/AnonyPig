@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>{{ Config::get('app.title') }}</title>
-    <link href="assets/css/settings.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/hover-min.css" rel="stylesheet" rel="stylesheet" media="all">
+    <link href="{{ url('assets/css/settings.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url('assets/css/hover-min.css') }}" rel="stylesheet" rel="stylesheet" media="all">
 </head>
 <body>
     <div class="app">

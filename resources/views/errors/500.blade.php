@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ Config::get('app.title') }}</title>
-    <link href="assets/css/app.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/hover-min.css" rel="stylesheet" rel="stylesheet" media="all">
+    <link href="{{ url('assets/css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url('assets/css/hover-min.css') }}" rel="stylesheet" rel="stylesheet" media="all">
 </head>
 <body>
 <div class="app">
