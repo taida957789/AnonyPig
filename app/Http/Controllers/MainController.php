@@ -73,7 +73,7 @@ class MainController extends Controller
 
             // Add Post data to database
             // ( This is useless now , but we use it linking the job in queue )
-            $post = Post::addPost($content);
+            $post = Post::addPost($content, Request::ip());
 
             // format the publish content ( hashtag .. or some information )
             //$hashTag = Setting::get('hash_tag');

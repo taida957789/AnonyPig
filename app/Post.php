@@ -19,14 +19,15 @@ class Post extends Model
      *
      * @var array
      */
-    protected $fillable = ['content', 'job_id', 'post_id'];
+    protected $fillable = ['content', 'job_id', 'post_id', 'ip'];
 
     public $timestamps = true;
 
 
-    public static function addPost($conent)
+    public static function addPost($conent, $ip);
     {
         $post = new Post();
+        $post->ip = $ip;
         $post->content = $conent;
         $post->generateToken();
         $post->save();

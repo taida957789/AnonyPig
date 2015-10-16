@@ -18,6 +18,7 @@ class Posts extends Migration
             $table->string('token')->default('')->index();
             $table->string('job_id')->default('')->index();
             $table->string('post_id')->default('')->index();
+            $table->string('ip')->default('');
             $table->timestamps();
         });
     }
