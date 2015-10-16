@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>{{ Config::get('app.title') }}</title>
-    <link href="{{ url('assets/css/settings.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ url('assets/css/hover-min.css') }}" rel="stylesheet" rel="stylesheet" media="all">
+    <link href="/assets/css/settings.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/hover-min.css" rel="stylesheet" rel="stylesheet" media="all">
 </head>
 <body>
     <div class="app">
@@ -28,6 +28,7 @@
                     <li>臉書授權代碼</li>
                     <li><textarea name="facebook_token">{{ $fbToken }}</textarea></li>
                 </ul>
+
                 <ul>
                     <li>Hash Tag</li>
                     <li><input name="hash_tag" type="text" value="{{ $hashTag }}"/></li>
