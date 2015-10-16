@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>{{ Config::get('app.title') }}</title>
-    <link href="{{ cached_asset('/assets/css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ '/assets/css/app.css?'.time() }}" rel="stylesheet" type="text/css">
     <link href="/assets/css/hover-min.css" rel="stylesheet" rel="stylesheet" media="all">
 </head>
 <body>
