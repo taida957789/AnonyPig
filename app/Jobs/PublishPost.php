@@ -48,15 +48,18 @@ class PublishPost extends Job implements SelfHandling, ShouldQueue
         // format the publish content ( hashtag .. or some information )
         $hashTag = Setting::get('hash_tag');
 
-        $publishContent = '#'.$hashTag.'_'.$this->post->id."\n\n".$this->post->content;
 
         $link = '';
-
+        $publishContent = '#'.$hashTag.'_'.$this->post->id."\n\n".$this->post->content;
         $count = preg_match("/.\\.imgur\\.com\\/[^ ]*/", $this->post->content, $matches);
 
         if($count > 0) {
             $link = $matches[0];
+            $publishContent =preg_replace("/.\\.imgur\\.com\\/[^ ]*\n?/", '', $publishContent, 1);
         }
+
+
+
         // publish it
         // ##### We will use async task in the future #####
         $res = $fb->post('/'.$pageId.'/feed', [
