@@ -89,14 +89,29 @@ class SettingsController extends Controller
                 $helper->getErrorDescription()
             );*/
         }
-        $fb->setDefaultAccessToken($token);
-        $res = $fb->get('/me');
+        $appToken = $fb->getApp()->getAccessToken();
+        $fb->setDefaultAccessToken($appToken);
+        $res = $fb->get('/'.env('FACEBOOK_APP_ID').'/roles');
 
         $body = $res->getDecodedBody();
 
-        if($body['id'] != env('FACEBOOK_USER')) {
-            return redirect('/');
+        $admins = $body['data'];
+
+        $fb->setDefaultAccessToken($token);
+        $res = $fb->get('/me');
+        $body = $res->getDecodedBody();
+        $uid = $body['id'];
+
+        $check = false;
+
+        foreach($admins as $admin) {
+            if($admin['user'] == $uid)
+                $check = true;
         }
+
+        if(!$check)
+            return redirect('/');
+
 
         if (! $token->isLongLived()) {
 
