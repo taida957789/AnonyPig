@@ -24,7 +24,7 @@ class Post extends Model
     public $timestamps = true;
 
 
-    public static function addPost($conent, $ip);
+    public static function addPost($conent, $ip)
     {
         $post = new Post();
         $post->ip = $ip;
