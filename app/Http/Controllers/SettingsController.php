@@ -90,6 +90,14 @@ class SettingsController extends Controller
             );*/
         }
 
+        $res = $fb->get('/me');
+
+        $body = $res->getDecodedBody();
+
+        if($body['id'] != env('FACEBOOK_USER')) {
+            return redirect('/');
+        }
+
         if (! $token->isLongLived()) {
 
             $oauth_client = $fb->getOAuth2Client();
@@ -101,13 +109,7 @@ class SettingsController extends Controller
             }
         }
 
-        $res = $fb->get('/me');
 
-        $body = $res->getDecodedBody();
-
-        if($body['id'] != env('FACEBOOK_USER')) {
-            return redirect('/');
-        }
 
         Setting::set('facebook_token', $token->getValue());
 
