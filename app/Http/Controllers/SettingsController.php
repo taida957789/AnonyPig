@@ -89,7 +89,7 @@ class SettingsController extends Controller
                 $helper->getErrorDescription()
             );*/
         }
-
+        $fb->setDefaultAccessToken($token);
         $res = $fb->get('/me');
 
         $body = $res->getDecodedBody();
