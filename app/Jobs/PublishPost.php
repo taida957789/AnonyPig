@@ -51,7 +51,7 @@ class PublishPost extends Job implements SelfHandling, ShouldQueue
 
         $link = '';
         $publishContent = '#'.$hashTag.'_'.$this->post->id."\n\n".$this->post->content;
-        $count = preg_match("/https?:\\/\\/.\\.imgur\\.com\\/[^ ]*/", $this->post->content, $matches);
+        $count = preg_match("/https?:\\/\\/.\\.imgur\\.com\\/[^ ]*\n?/", $this->post->content, $matches);
 
         if($count > 0) {
             $link = $matches[0];
