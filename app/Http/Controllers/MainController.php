@@ -91,12 +91,12 @@ class MainController extends Controller
             // update the post_id in database
             //Post::updatePostId($post->id, $decodeBody['id']);
 
-            $time = mt_rand(5, 15);
+            $time = mt_rand(3, 10);
             $nextTime = $time * (Redis::zcard('queues:default:delayed') + 1);
 
             $job = (new PublishPost($post, $pageToken))->delay($nextTime);
 
-            $nextTime += 3;
+            $nextTime += 2;
 
             $job_id = $this->dispatch($job);
 
