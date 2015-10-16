@@ -32,7 +32,7 @@
             @endif
             <ul class="row">
                 <li class="desc">在下方欄位寫下你想要告白的內容，請勿留下任何敏感資訊。</li>
-                <li class="desc">顯示圖片可以在內容中插入一行在 <a href="http://imgur.com">http://imgur.com</a>所上傳的圖片的網址唷</li>
+                <li class="desc">圖片在內容中插入一行在 <a href="http://imgur.com">imgur</a> 所上傳的圖片的網址即可顯示</li>
                 <li>
                     <textarea name="content" id="content" ></textarea>
                 </li>
