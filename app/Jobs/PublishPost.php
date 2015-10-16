@@ -55,7 +55,7 @@ class PublishPost extends Job implements SelfHandling, ShouldQueue
 
         if($count > 0) {
             $link = $matches[0];
-            $publishContent =preg_replace("/https?:\\/\\/.\\.imgur\\.com\\/[^ ]*\n?/", '', $publishContent, 1);
+            $publishContent = preg_replace("/https?:\\/\\/.\\.imgur\\.com\\/[^ ]*\n?/", '', $publishContent, 1);
         }
 
 
