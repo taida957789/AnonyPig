@@ -32,6 +32,7 @@
             @endif
             <ul class="row">
                 <li class="desc">在下方欄位寫下你想要告白的內容，請勿留下任何敏感資訊。</li>
+                <li class="desc">顯示圖片可以在內容中插入一行在 <a href="http://imgur.com">http://imgur.com</a>所上傳的圖片的網址唷</li>
                 <li>
                     <textarea name="content" id="content" ></textarea>
                 </li>
@@ -46,6 +47,7 @@
                 <li>告白規範</li>
                 <li>
                     <ul>
+                        <li>請勿發佈測試文</li>
                         <li>請勿做任何人身攻擊</li>
                         <li>請勿發佈任何具有性騷擾、猥褻、令人不舒服的字眼</li>
                     </ul>

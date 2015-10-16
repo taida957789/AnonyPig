@@ -50,10 +50,18 @@ class PublishPost extends Job implements SelfHandling, ShouldQueue
 
         $publishContent = '#'.$hashTag.'_'.$this->post->id."\n\n".$this->post->content;
 
+        $link = '';
+
+        $count = preg_match("/.\\.imgur\\.com\\/.*\n/", $this->post->content, $matches);
+
+        if($count > 0) {
+            $link = $matches[0];
+        }
         // publish it
         // ##### We will use async task in the future #####
         $res = $fb->post('/'.$pageId.'/feed', [
-            'message' => $publishContent
+            'message' => $publishContent,
+            'link' => $link == '' ? null : $link,
         ]);
 
         $decodeBody = $res->getDecodedBody();
