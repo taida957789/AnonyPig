@@ -19,20 +19,23 @@ class SettingsController extends Controller
     public function index()
     {
 
-        $pageId = Setting::get('page_id');
-        $fbToken = Setting::get('facebook_token');
-        $hashTag = Setting::get('hash_tag');
+        if(Session::get('login') === true) {
+            $pageId = Setting::get('page_id');
+            $fbToken = Setting::get('facebook_token');
+            $hashTag = Setting::get('hash_tag');
 
-        return view('settings', [
-            'pageId' => $pageId,
-            'fbToken' => $fbToken,
-            'hashTag' => $hashTag
-        ]);
+            return view('settings', [
+                'pageId' => $pageId,
+                'fbToken' => $fbToken,
+                'hashTag' => $hashTag
+            ]);
+        } else {
+            return redirect('/settings/facebook/login');
+        }
     }
 
     public function save(Request $request)
     {
-
         if(Session::get('login') === true) {
             $pageId = $request->input('page_id');
             $fbToken = $request->input('facebook_token');
@@ -96,6 +99,14 @@ class SettingsController extends Controller
             } catch (FacebookSDKException $e) {
                 return redirect('/');
             }
+        }
+
+        $res = $fb->get('/me');
+
+        $body = $res->getDecodedBody();
+
+        if($body['id'] != env('FACEBOOK_USER')) {
+            return redirect('/');
         }
 
         Setting::set('facebook_token', $token->getValue());
