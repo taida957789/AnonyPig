@@ -12,8 +12,8 @@
 <body>
 <div class="app">
     <div class="center-container">
-        <h1>新告白元智</h1>
-        <h2>YZU Crushes</h2>
+        <h1>Anony Pig</h1>
+        <h2>逆明貼文系統</h2>
         <form id="appform" action="/" method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             @if ($errors->has())
@@ -31,7 +31,7 @@
 
             @endif
             <ul class="row">
-                <li class="desc">在下方欄位寫下你想要告白的內容，請勿留下任何敏感資訊。</li>
+                <li class="desc">在下方欄位寫下你想要發佈的內容，請勿留下任何敏感資訊。</li>
                 <li class="desc">圖片在內容中插入一行在 <a href="http://imgur.com">imgur</a> 所上傳的圖片的網址即可顯示</li>
                 <li>
                     <textarea name="content" id="content" ></textarea>
@@ -61,7 +61,7 @@
             </ul>
             <ul class="row">
                 <li>
-                    <button class="button hvr-sweep-to-right" type="submit" >我要告白</button>
+                    <button class="button hvr-sweep-to-right" type="submit" >送出貼文</button>
                 </li>
             </ul>
         </form>

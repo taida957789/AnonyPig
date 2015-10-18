@@ -11,7 +11,7 @@
 <body>
 <div class="app">
     <div class="center-container">
-        <h1>新告白元智 YZU Crushes</h1>
+        <h1>Anony Pig 匿名貼文系統</h1>
 
         <h2>預計將在 <span id="seconds"> {{ $seconds  }}</span> 秒後發布文章</h2>
     </div>
