@@ -12,7 +12,7 @@ Install this repo
   composer install
 ```
 
-Install sedis-server and configure it
+Install redis-server and configure it
 
 ### Configuration
 
