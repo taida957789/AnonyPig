@@ -13,7 +13,7 @@
 <div class="app">
     <div class="center-container">
         <h1>Anony Pig</h1>
-        <h2>逆明貼文系統</h2>
+        <h2>匿名貼文系統</h2>
         <form id="appform" action="/" method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             @if ($errors->has())
@@ -38,25 +38,24 @@
                 </li>
             </ul>
             <ul class="recaptcha row">
-                <li>你是人類逆？</li>
+                <li>人類驗證</li>
                 <li>
                     {!! Recaptcha::render() !!}
                 </li>
             </ul>
             <ul class="rules row">
-                <li>告白規範</li>
+                <li>服務規範</li>
                 <li>
                     <ul>
-                        <li>請勿發佈測試文</li>
-                        <li>請勿做任何人身攻擊</li>
-                        <li>請勿發佈任何具有性騷擾、猥褻、令人不舒服的字眼</li>
+                        <li>禁止人身攻擊</li>
+                        <li>禁止發佈令人不舒服的字眼以及具有性騷擾的言詞</li>
                     </ul>
                 </li>
 
             </ul>
             <ul class="row">
                 <li>
-                    <input type="checkbox" name="check_rule" required value="true"/> 我遵守此規範
+                    <input type="checkbox" name="check_rule" required value="true"/> 我同意遵守此規範
                 </li>
             </ul>
             <ul class="row">
