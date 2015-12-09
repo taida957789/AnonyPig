@@ -49,6 +49,9 @@ Start Dev Server
 ```bash
   php artisan serv
 ```
+Start Production Mode Server
+use supervisor  ~
+See at http://laravel.com/docs/5.1/queues
 
 
 
