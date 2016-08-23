@@ -1,6 +1,6 @@
 ## AnonyPig
 
-Facebook 粉絲專頁即時匿名PO文系統
+Facebook anonymous publisher
 
 
 ### Installation
